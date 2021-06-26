@@ -1,0 +1,40 @@
+Project instructions
+Goal:
+    -Build API to validate payment information and charge amount
+    
+Requirements:
+    - Rest API
+    - OOP
+    - Needs to support data in 2 formats: JSON and XML
+    - Needs to authorize request hash from the key and data (API KEY, CLIENT ID, etc) 
+    - Be as creative as possible
+Supported payment types:
+    • Credit card
+    • Credit card number
+    • Expiration date
+    • CVV2
+    • Email
+    • Mobile
+    • Phone number
+
+Validation:
+    Credit card:
+        • Credit card number based on Luhn's algorithm
+        • Expiration date
+        • CVV2
+        • Email
+        • All data is required
+        • Mobile
+        • Phone number format
+
+Response:
+  Valid: bool
+  Error code: list of error codes based on validation
+
+NOTE 
+- The result of your work should be sent via email, as a zip archive or a PRIVATE REPO
+- Please do not copy/paste your solution from any source. Using any open source libs and/or framework is also not allowed. This will be an automatic disqualification of your application.
+- No need for a frontend design, just endpoints, request and respond...return the card info response
+
+How to submit
+- Upload your completed project to your GitHub, and then paste a link to the repository below in the form along with any comments you have about your solution.
