@@ -1,4 +1,4 @@
-require("../lib/envFileReader")();
+require("../lib/env.lib")();
 const environment = {};
 environment.staging = {
   port: parseInt(process.env.PORT),
