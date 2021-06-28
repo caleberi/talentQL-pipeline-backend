@@ -7,7 +7,7 @@ app
   .get("/card", (request, response) => {
     response.status(200).json(response.context);
   })
-  .post("/card", (request, response) => {
+  .post("/card/:id/book/:book", (request, response) => {
     response.status(200).json(request.context);
   });
 
