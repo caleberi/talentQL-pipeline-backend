@@ -3,11 +3,11 @@ Goal:
     -Build API to validate payment information and charge amount
     
 Requirements:
-    - Rest API
-    - OOP
+    - Rest API ✅
+    - OOP ✅
     - Needs to support data in 2 formats: JSON and XML
     - Needs to authorize request hash from the key and data (API KEY, CLIENT ID, etc) 
-    - Be as creative as possible
+    - Be as creative as possible ✅
 Supported payment types:
     • Credit card
     • Credit card number
@@ -37,4 +37,14 @@ NOTE
 - No need for a frontend design, just endpoints, request and respond...return the card info response
 
 How to submit
-- Upload your completed project to your GitHub, and then paste a link to the repository below in the form along with any comments you have about your solution.
+- Upload your completed project to your GitHub, and then paste a link to the repository below in the form along with any comments you have about your solution. ✅
+
+
+Here are more details to help you work on the Take-home project;
+
+1.  Validate cards; it should tell you which type of card (Mastercard, Visa, Discover, etc.). Additionally, you can't have an expired card.
+2. To validate a card, you do not need a mobile number; hence, it was listed differently, but we still want you to accept a valid phone number.
+3. Use your country's valid mobile number digit count (e.g. Nigeria is 11 digit) to differentiate and give country codes.
+4. "Build API to validate payment information, and charge amount", but no amount is given in the data points. Is it safe to assume that only validation is required? Yes, only validation is needed.
+
+Looking forward to reviewing your project.
