@@ -7,5 +7,7 @@ exports.validateCard = (request, response) => {
 };
 
 exports.ping = (request, response) => {
-  response.status(200).send("Hello World", "text/plain");
+  response
+    .status(200)
+    .send("<div style='color:red;'>Hello World</div>", "text/html");
 };
