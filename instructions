@@ -23,13 +23,13 @@ Validation:
         • Expiration date ✔
         • CVV2 ✔
         • Email ✔
-        • All data is required
+        • All data is required ✔
         • Mobile ✔
-        • Phone number format
+        • Phone number format ✔
 
 Response:
-  Valid: bool
-  Error code: list of error codes based on validation
+  Valid: bool ✔
+  Error code: list of error codes based on validation ✔
 
 NOTE 
 - The result of your work should be sent via email, as a zip archive or a PRIVATE REPO
