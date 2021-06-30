@@ -1,13 +1,18 @@
 const luhn = require("../algorithms/luhn.algorithm");
-module.exports = CreditCard;
+module.exports = {
+  CreditCardDetails,
+  CreditCardError,
+};
+
 class CreditCardError extends Error {
   constructor(...params) {
-    super(...params);
+    super(errors, ...params);
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, CreditCardError);
     }
     this.name = "CreditCardError";
     this.date = new Date();
+    this.error = errors;
   }
 }
 class CreditCardDetails {
@@ -31,8 +36,15 @@ class CreditCardDetails {
     return luhn.validate(this.creditCardNumber);
   }
   isExpiredDate() {
-    let today = new Date();
-    return this.expirationDate < today;
+    let parseDate =
+      typeof this.expirationDate == "string"
+        ? new Date(this.expirationDate)
+        : false;
+    if (parseDate) {
+      let today = new Date();
+      return this.expirationDate < today;
+    }
+    return parseDate;
   }
   isValidCVV2() {
     return this.CVV2.match(/^[0-9]{3, 4}$/).length > 0;
@@ -43,8 +55,13 @@ class CreditCardDetails {
     return re.test(this.email.toLowerCase());
   }
   isValidMobileNumber() {
-    return /^[+]?(1\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g.test(
+    return /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/.test(
       this.isValidMobileNumber
+    );
+  }
+  isValidPhoneNumber() {
+    return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
+      this.phoneNumber
     );
   }
   extractCountryCode(number) {
@@ -56,5 +73,35 @@ class CreditCardDetails {
       234: "Nigeria",
     };
     return codes[code];
+  }
+  validate() {
+    let errors = {};
+    let cardNumber = this.isValidCreditCardNumber()
+      ? getCardType(this.creditCardNumber)
+      : errors.push("Invalid / Unknown card type");
+    let expireDate = this.isExpiredDate()
+      ? true
+      : errors.push("card has expired");
+    let cvv = this.isValidCVV2() ? true : errors.push("Invalid CVV number ");
+    let email = this.isValidEmail() ? true : errors.push("Invalid email");
+    let mobile = this.isValidMobileNumber()
+      ? true
+      : errors.push("Invalid mobile number");
+    let phone = this.isValidPhoneNumber()
+      ? true
+      : errors.push("Invalid phone number");
+    let code = this.extractCountryCode(this.mobile);
+    return {
+      error: errors,
+      success: {
+        cvv,
+        cardNumber,
+        email,
+        mobile,
+        phone,
+        code,
+        expireDate,
+      },
+    };
   }
 }
