@@ -5,7 +5,7 @@ Goal:
 Requirements:
     - Rest API ✅
     - OOP ✅
-    - Needs to support data in 2 formats: JSON ✔ and XML
+    - Needs to support data in 2 formats: JSON {✔} and XML {✔}
     - Needs to authorize request hash from the key and data (API KEY, CLIENT ID, etc) 
     - Be as creative as possible ✅
 Supported payment types:
@@ -19,12 +19,12 @@ Supported payment types:
 
 Validation:
     Credit card:
-        • Credit card number based on Luhn's algorithm
-        • Expiration date
-        • CVV2
-        • Email
+        • Credit card number based on Luhn's algorithm ✔
+        • Expiration date ✔
+        • CVV2 ✔
+        • Email ✔
         • All data is required
-        • Mobile
+        • Mobile ✔
         • Phone number format
 
 Response:
