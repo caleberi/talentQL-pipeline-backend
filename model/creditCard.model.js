@@ -1,4 +1,5 @@
 const luhn = require("../algorithms/luhn.algorithm");
+const { CreditCardType } = require("../algorithms/cardType.algorithm");
 module.exports = {
   CreditCardDetails,
   CreditCardError,
@@ -74,11 +75,16 @@ class CreditCardDetails {
     };
     return codes[code];
   }
+  getCardType(cc) {
+    return CreditCardType(cc);
+  }
   validate() {
     let errors = {};
-    let cardNumber = this.isValidCreditCardNumber()
-      ? getCardType(this.creditCardNumber)
-      : errors.push("Invalid / Unknown card type");
+    let cardType =
+      this.isValidCreditCardNumber() &&
+      this.getCardType(this.creditCardNumber) != undefined
+        ? this.getCardType(this.creditCardNumber)
+        : errors.push("Invalid / Unknown card type");
     let expireDate = this.isExpiredDate()
       ? true
       : errors.push("card has expired");
@@ -92,10 +98,14 @@ class CreditCardDetails {
       : errors.push("Invalid phone number");
     let code = this.extractCountryCode(this.mobile);
     return {
-      error: errors,
+      error: {
+        valid: false,
+        errors,
+      },
       success: {
+        valid: true,
         cvv,
-        cardNumber,
+        cardType,
         email,
         mobile,
         phone,
