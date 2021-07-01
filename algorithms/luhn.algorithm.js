@@ -1,5 +1,3 @@
-module.exports = luhn;
-
 const toDigit = (numString) =>
   numString
     .replace(/[^0-9]/g, "")
@@ -36,3 +34,5 @@ luhn.validate = (numString) => {
 
   return total % 10 === 0;
 };
+
+module.exports = luhn;
