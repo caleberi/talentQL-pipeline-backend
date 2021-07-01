@@ -6,7 +6,7 @@ const app = new Servify();
 
 app.get("/ping", cardResolver.ping);
 app.get("/echo", cardResolver.echo);
-app.post("/card", cardResolver.validateCard);
+app.post("/card/json", cardResolver.validateCardJson);
 
 app.listen(config.port, (port) => {
   return () => console.log(`Server running at http://localhost:${port} `);

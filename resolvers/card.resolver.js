@@ -6,7 +6,7 @@ exports.echo = (request, response) => {
   response.status(200).json(request.context);
 };
 
-exports.validateCard = (request, response) => {
+exports.validateCardJson = (request, response) => {
   try {
     let { body } = request.context;
     let { cardNumber, cvv, mobileNos, phoneNumber, email, expiryDate } = body;
@@ -18,7 +18,7 @@ exports.validateCard = (request, response) => {
       mobileNos,
       phoneNumber
     ).validate();
-    if (error) {
+    if (error.errors.length) {
       throw new CreditCardError(error, "Card Validation Error");
     }
     response.status(200).json(success);

@@ -42,9 +42,9 @@ How to submit
 
 Here are more details to help you work on the Take-home project;
 
-1.  Validate cards; it should tell you which type of card (Mastercard, Visa, Discover, etc.). Additionally, you can't have an expired card.
-2. To validate a card, you do not need a mobile number; hence, it was listed differently, but we still want you to accept a valid phone number.
-3. Use your country's valid mobile number digit count (e.g. Nigeria is 11 digit) to differentiate and give country codes.
+1.  Validate cards; it should tell you which type of card (Mastercard, Visa, Discover, etc.). Additionally, you can't have an expired card. ✔
+2. To validate a card, you do not need a mobile number; hence, it was listed differently, but we still want you to accept a valid phone number.✔
+3. Use your country's valid mobile number digit count (e.g. Nigeria is 11 digit) to differentiate and give country codes. ✔
 4. "Build API to validate payment information, and charge amount", but no amount is given in the data points. Is it safe to assume that only validation is required? Yes, only validation is needed.
 
 Looking forward to reviewing your project.

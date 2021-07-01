@@ -1,12 +1,9 @@
 const luhn = require("../algorithms/luhn.algorithm");
 const { CreditCardType } = require("../algorithms/cardType.algorithm");
-module.exports = {
-  CreditCardDetails,
-  CreditCardError,
-};
+const findCountryByCode = require("../lib/county-codes.lib");
 
 class CreditCardError extends Error {
-  constructor(...params) {
+  constructor(errors, ...params) {
     super(errors, ...params);
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, CreditCardError);
@@ -37,18 +34,14 @@ class CreditCardDetails {
     return luhn.validate(this.creditCardNumber);
   }
   isExpiredDate() {
-    let parseDate =
-      typeof this.expirationDate == "string"
-        ? new Date(this.expirationDate)
-        : false;
-    if (parseDate) {
-      let today = new Date();
-      return this.expirationDate < today;
-    }
-    return parseDate;
+    let [exMonth, exYear] = this.expirationDate.split("/");
+    const today = new Date();
+    const ed = new Date();
+    ed.setFullYear(exYear, exMonth - 1, ed.getDate());
+    return today < ed;
   }
   isValidCVV2() {
-    return this.CVV2.match(/^[0-9]{3, 4}$/).length > 0;
+    return /^[0-9]{3,4}$/.exec(this.CVV2) != this.CVV2 ? false : true;
   }
   isValidEmail() {
     const re =
@@ -56,9 +49,8 @@ class CreditCardDetails {
     return re.test(this.email.toLowerCase());
   }
   isValidMobileNumber() {
-    return /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/.test(
-      this.isValidMobileNumber
-    );
+    let mobile = this.mobile.replace(/\+/g, "");
+    return /^\d{10,14}$/.test(mobile);
   }
   isValidPhoneNumber() {
     return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
@@ -70,23 +62,21 @@ class CreditCardDetails {
     return this.getCountryCode(cleanNumber.slice(0, 4));
   }
   getCountryCode(code) {
-    let codes = {
-      234: "Nigeria",
-    };
-    return codes[code];
+    let countyCode = findCountryByCode(code);
+    return countyCode ? countyCode : false;
   }
   getCardType(cc) {
     return CreditCardType(cc);
   }
   validate() {
-    let errors = {};
+    let errors = [];
+    let cardNum = this.creditCardNumber.replace(/\-/g, "");
     let cardType =
-      this.isValidCreditCardNumber() &&
-      this.getCardType(this.creditCardNumber) != undefined
-        ? this.getCardType(this.creditCardNumber)
+      this.isValidCreditCardNumber() && this.getCardType(cardNum) != undefined
+        ? this.getCardType(cardNum)
         : errors.push("Invalid / Unknown card type");
     let expireDate = this.isExpiredDate()
-      ? true
+      ? false
       : errors.push("card has expired");
     let cvv = this.isValidCVV2() ? true : errors.push("Invalid CVV number ");
     let email = this.isValidEmail() ? true : errors.push("Invalid email");
@@ -104,14 +94,21 @@ class CreditCardDetails {
       },
       success: {
         valid: true,
-        cvv,
-        cardType,
-        email,
-        mobile,
-        phone,
-        code,
-        expireDate,
+        card: {
+          cvv,
+          cardType,
+          email,
+          mobile,
+          phone,
+          code,
+          expireDate,
+        },
       },
     };
   }
 }
+
+module.exports = {
+  CreditCardDetails,
+  CreditCardError,
+};
