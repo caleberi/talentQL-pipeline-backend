@@ -1,7 +1,8 @@
 const {
   CreditCardDetails,
   CreditCardError,
-} = require("../model/creditCard.model");
+} = require("../validator/credit-card.validator");
+
 exports.echo = (request, response) => {
   response.status(200).json(request.context);
 };
@@ -10,7 +11,10 @@ exports.validateCardJson = (request, response) => {
   try {
     let { body } = request.context;
     let { cardNumber, cvv, mobileNos, phoneNumber, email, expiryDate } = body;
-    let { error, success } = new CreditCardDetails(
+    let {
+      error: { errors: errors },
+      success,
+    } = new CreditCardDetails(
       cardNumber,
       expiryDate,
       cvv,
@@ -18,13 +22,38 @@ exports.validateCardJson = (request, response) => {
       mobileNos,
       phoneNumber
     ).validate();
-    if (error.errors.length) {
+    if (errors.length) {
       throw new CreditCardError(error, "Card Validation Error");
     }
     response.status(200).json(success);
     return;
   } catch (err) {
     response.status(400).json(err);
+  }
+};
+
+exports.validateCardXML = (request, response) => {
+  try {
+    let { body } = request.context;
+    let { cardNumber, cvv, mobileNos, phoneNumber, email, expiryDate } = body;
+    let {
+      error: { errors: errors },
+      success,
+    } = new CreditCardDetails(
+      cardNumber,
+      expiryDate,
+      cvv,
+      email,
+      mobileNos,
+      phoneNumber
+    ).validate();
+    if (errors.length) {
+      throw new CreditCardError(error, "Card Validation Error");
+    }
+    response.status(200).xml(success);
+    return;
+  } catch (err) {
+    response.status(400).xml(err);
   }
 };
 

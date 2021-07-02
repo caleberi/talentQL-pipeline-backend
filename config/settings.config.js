@@ -3,15 +3,15 @@ const environment = {};
 environment.staging = {
   port: parseInt(process.env.PORT),
   env: process.env.NODE_ENV,
-  clientKey: process.env.CLIENT_KEY,
-  clientSecret: process.env.CLIENT_SECRET,
+  clientId: process.env.CLIENT_ID,
+  clientApiKey: process.env.CLIENT_API_KEY,
 };
 
 environment.production = {
   port: parseInt(process.env.PRODUCTION_PORT),
   env: process.env.NODE_ENV,
-  clientKey: process.env.PRODUCTION_CLIENT_KEY,
-  clientSecret: process.env.PRODUCTION_CLIENT_SECRET,
+  clientId: process.env.PRODUCTION_CLIENT_ID,
+  clientApiKey: process.env.PRODUCTION_CLIENT_API_KEY,
 };
 
 let currentEnv =

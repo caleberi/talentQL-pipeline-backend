@@ -1,5 +1,5 @@
 const luhn = require("../algorithms/luhn.algorithm");
-const { CreditCardType } = require("../algorithms/cardType.algorithm");
+const { CreditCardType } = require("../algorithms/card-type.algorithm");
 const findCountryByCode = require("../lib/county-codes.lib");
 
 class CreditCardError extends Error {

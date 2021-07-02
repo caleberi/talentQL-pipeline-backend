@@ -6,16 +6,16 @@ Requirements:
     - Rest API ✅
     - OOP ✅
     - Needs to support data in 2 formats: JSON {✔} and XML {✔}
-    - Needs to authorize request hash from the key and data (API KEY, CLIENT ID, etc) 
+    - Needs to authorize request hash from the key and data (API KEY, CLIENT ID, etc) ✖
     - Be as creative as possible ✅
 Supported payment types:
-    • Credit card
-    • Credit card number
-    • Expiration date
-    • CVV2
-    • Email
-    • Mobile
-    • Phone number
+    • Credit card ✔
+    • Credit card number ✔
+    • Expiration date ✔
+    • CVV2 ✔
+    • Email ✔
+    • Mobile ✔
+    • Phone number ✔
 
 Validation:
     Credit card:

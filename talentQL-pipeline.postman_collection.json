@@ -1,0 +1,366 @@
+{
+	"info": {
+		"_postman_id": "5bf49a5e-da34-494b-8d43-4fda824b89bb",
+		"name": "talentQL-pipeline",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{BaseUrl}}/card/convert/xml",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic OWpnc2tic2hoaHlyODg0MjB0aWpnJDppczQzaWozdXQwZ2p4YmNhdQ==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardNumber\":\"4012-8888-8888-1881\",\r\n    \"expiryDate\":\"04/2022\",\r\n    \"cvv\":\"201\",\r\n    \"email\":\"caleberioluwa@gmail.com\",\r\n    \"mobileNos\":\"+2348133346430\",\r\n    \"phoneNumber\":\"08133346430\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/card/convert/xml",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"card",
+						"convert",
+						"xml"
+					]
+				},
+				"description": "Validate a credit card and send it response in XML format."
+			},
+			"response": [
+				{
+					"name": "validate card",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic OWpnc2tic2hoaHlyODg0MjB0aWpnJDppczQzaWozdXQwZ2p4YmNhdQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardNumber\":\"4012-8888-8888-1881\",\r\n    \"expiryDate\":\"04/2022\",\r\n    \"cvv\":\"201\",\r\n    \"email\":\"caleberioluwa@gmail.com\",\r\n    \"mobileNos\":\"+2348133346430\",\r\n    \"phoneNumber\":\"08133346430\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/card/convert/xml",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"card",
+								"convert",
+								"xml"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 01 Jul 2021 23:31:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "181"
+						}
+					],
+					"cookie": [],
+					"body": "<valid>true</valid>\n<card>\n    <cvv>true</cvv>\n    <cardType>VISA</cardType>\n    <email>true</email>\n    <mobile>true</mobile>\n    <phone>true</phone>\n    <code>Nigeria</code>\n    <expireDate>false</expireDate>\n</card>"
+				}
+			]
+		},
+		{
+			"name": "error message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardNumber\":\"4012-8888-8888-1881\",\r\n    \"expiryDate\":\"04/2022\",\r\n    \"cvv\":\"201\",\r\n    \"email\":\"caleberioluwa@gmail.com\",\r\n    \"mobileNos\":\"+2348133346430\",\r\n    \"phoneNumber\":\"08133346430\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/card/convert/xml",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"card",
+						"convert",
+						"xml"
+					]
+				},
+				"description": "Error message from xml format reponse request"
+			},
+			"response": [
+				{
+					"name": "error message",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardNumber\":\"4012-8888-8888-1881\",\r\n    \"expiryDate\":\"04/2022\",\r\n    \"cvv\":\"201\",\r\n    \"email\":\"caleberioluwa@gmail.com\",\r\n    \"mobileNos\":\"+2348133346430\",\r\n    \"phoneNumber\":\"08133346430\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/card/convert/xml",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"card",
+								"convert",
+								"xml"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 01 Jul 2021 23:36:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 400,\n    \"msg\": \"Unauthorized Request\"\n}"
+				}
+			]
+		},
+		{
+			"name": "{{BaseUrl}}/card/json ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic OWpnc2tic2hoaHlyODg0MjB0aWpnJDppczQzaWozdXQwZ2p4YmNhdQ==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardNumber\":\"4012-8888-8888-1881\",\r\n    \"expiryDate\":\"04/2022\",\r\n    \"cvv\":\"201\",\r\n    \"email\":\"caleberioluwa@gmail.com\",\r\n    \"mobileNos\":\"+2348133346430\",\r\n    \"phoneNumber\":\"08133346430\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/card/json ",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"card",
+						"json "
+					]
+				},
+				"description": "Validate a card and get response in JSON format"
+			},
+			"response": [
+				{
+					"name": "validate card",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic OWpnc2tic2hoaHlyODg0MjB0aWpnJDppczQzaWozdXQwZ2p4YmNhdQ==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardNumber\":\"4012-8888-8888-1881\",\r\n    \"expiryDate\":\"04/2022\",\r\n    \"cvv\":\"201\",\r\n    \"email\":\"caleberioluwa@gmail.com\",\r\n    \"mobileNos\":\"+2348133346430\",\r\n    \"phoneNumber\":\"08133346430\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/card/json ",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"card",
+								"json "
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 01 Jul 2021 23:41:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "128"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"valid\": true,\n    \"card\": {\n        \"cvv\": true,\n        \"cardType\": \"VISA\",\n        \"email\": true,\n        \"mobile\": true,\n        \"phone\": true,\n        \"code\": \"Nigeria\",\n        \"expireDate\": false\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "error message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardNumber\":\"4012-8888-8888-1881\",\r\n    \"expiryDate\":\"04/2022\",\r\n    \"cvv\":\"201\",\r\n    \"email\":\"caleberioluwa@gmail.com\",\r\n    \"mobileNos\":\"+2348133346430\",\r\n    \"phoneNumber\":\"08133346430\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/card/convert/xml",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"card",
+						"convert",
+						"xml"
+					]
+				},
+				"description": "Error message from xml format reponse request"
+			},
+			"response": [
+				{
+					"name": "error message",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardNumber\":\"4012-8888-8888-1881\",\r\n    \"expiryDate\":\"04/2022\",\r\n    \"cvv\":\"201\",\r\n    \"email\":\"caleberioluwa@gmail.com\",\r\n    \"mobileNos\":\"+2348133346430\",\r\n    \"phoneNumber\":\"08133346430\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/card/json",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"card",
+								"json"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 01 Jul 2021 23:36:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 400,\n    \"msg\": \"Unauthorized Request\"\n}"
+				}
+			]
+		}
+	]
+}
