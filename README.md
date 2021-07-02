@@ -114,3 +114,5 @@ This is located in the root folder of this project
 
 This codebase is just a starter file for something wonderful and it is open to contribution.
 
+## Enviroment 
+The envrionment should be removed but was intentionally left there to prevent crashing of app.
